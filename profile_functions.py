@@ -1,7 +1,7 @@
 def create_profile(profiles):
     name = input("\nIndicate your name: ")
     surname = input("\nIndicate your last name: ")
-    email = input("\nIndicate your email: ")
+    email = str.lower(input("\nIndicate your email: "))
     while True:
         try:
             age = int(input("\nIndicate your age: "))
@@ -39,7 +39,7 @@ def view_profiles(profiles):
             print(f"\nEmail: {profiles[profile]["email"]}")
             print("\n########################################")
 
-def check_profile(profile, profiles)
+def check_profile(profile, profiles):
     if profile not in profiles:
         print("\nThe provided username is not part of our database")
     else:
