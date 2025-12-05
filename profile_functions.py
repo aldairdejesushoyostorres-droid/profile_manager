@@ -1,3 +1,14 @@
+# NEW ABSTRACTION FUNCTION
+def display_profile_details(username, profile_data):
+    """Handles the formatted printing of a single user's profile data."""
+    print("\n########################################")
+    print(f"\nProfile Information: {username}")
+    print(f"\nName: {profile_data["name"]}")
+    print(f"\nLast Name: {profile_data["surname"]}")
+    print(f"\nAge: {profile_data["age"]}")
+    print(f"\nEmail: {profile_data["email"]}")
+    print("\n########################################")
+
 def create_profile(profiles):
     name = input("\nIndicate your name: ")
     surname = input("\nIndicate your last name: ")
@@ -30,26 +41,18 @@ def view_profiles(profiles):
     if len(profiles) == 0:
         print("\nWe can't see anything yet because there are no users")
     else:
-        print("\n########################################")
-        for profile in profiles:
-            print(f"\nProfile Information: {profile}")
-            print(f"\nName: {profiles[profile]["name"]}")
-            print(f"\nLast Name: {profiles[profile]["surname"]}")
-            print(f"\nAge: {profiles[profile]["age"]}")
-            print(f"\nEmail: {profiles[profile]["email"]}")
-            print("\n########################################")
+        # Calls the new abstraction function for each profile
+        for username, profile_data in profiles.items(): 
+            display_profile_details(username, profile_data)
 
-def check_profile(profile, profiles):
-    if profile not in profiles:
+
+def check_profile(username, profiles): # Renamed 'profile' to 'username' for clarity
+    if username not in profiles:
         print("\nThe provided username is not part of our database")
     else:
-        print("\n########################################")
-        print(f"\nProfile Information: {profile}")
-        print(f"\nName: {profiles[profile]["name"]}")
-        print(f"\nLast Name: {profiles[profile]["surname"]}")
-        print(f"\nAge: {profiles[profile]["age"]}")
-        print(f"\nEmail: {profiles[profile]["email"]}")
-        print("\n########################################")
+        # Calls the new abstraction function for the found profile
+        display_profile_details(username, profiles[username])
+
 
 def update_profile(profile, profiles):
     if profile not in profiles:

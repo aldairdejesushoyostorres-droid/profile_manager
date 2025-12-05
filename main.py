@@ -11,8 +11,11 @@ while True:
             print("\n2) Create a profile")
             print("\n3) Update a profile")
             print("\n4) Delete a profile")
+            print("\n5) View a specific profile") # <-- NEW OPTION ADDED
             choice = int(input("\nIndicate your choice: "))
-            if choice < 1 or choice > 4:
+            
+            # Validation updated to accept 5
+            if choice < 1 or choice > 5: 
                 print("\nYou have to select one of the available options, try again!")
             else:
                 break
@@ -25,11 +28,14 @@ while True:
         case 2:
             profile_functions.create_profile(profiles)
         case 3:
-            profile = input("\nIndicate the username for updating such a profile: ")
-            profile_functions.update_profile(profile, profiles)
+            profile_name = input("\nIndicate the username for updating such a profile: ") # Clarified variable name
+            profile_functions.update_profile(profile_name, profiles)
         case 4:
-            profile = input("\nIndicate the username for deleting such a profile: ")
-            profile_functions.delete_profile(profile, profiles)
+            profile_name = input("\nIndicate the username for deleting such a profile: ") # Clarified variable name
+            profile_functions.delete_profile(profile_name, profiles)
+        case 5: # <-- NEW CASE ADDED
+            profile_name = input("\nIndicate the username of the profile to view: ")
+            profile_functions.check_profile(profile_name, profiles)
     
     while True:
         try:
@@ -49,3 +55,5 @@ while True:
     else:
         break
 
+
+print("\nProcess Finished!") # Added a final message
