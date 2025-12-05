@@ -1,7 +1,7 @@
 def create_profile(profiles):
     name = input("\nIndicate your name: ")
     surname = input("\nIndicate your last name: ")
-    email = surname = input("\nIndicate your email: ")
+    email = input("\nIndicate your email: ")
     while True:
         try:
             age = int(input("\nIndicate your age: "))
@@ -25,3 +25,16 @@ def create_profile(profiles):
     }
 
     profiles[username] = profile
+
+def view_profiles(profiles):
+    if len(profiles) == 0:
+        print("\nWe can't see anything yet because there are no users")
+    else:
+        print("\n########################################")
+        for profile in profiles:
+            print(f"\nProfile Information: {profile}")
+            print(f"\nName: {profiles[profile]["name"]}")
+            print(f"\nLast Name: {profiles[profile]["surname"]}")
+            print(f"\nAge: {profiles[profile]["age"]}")
+            print(f"\nEmail: {profiles[profile]["email"]}")
+            print("\n########################################")
