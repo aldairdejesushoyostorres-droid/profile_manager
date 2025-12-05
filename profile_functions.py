@@ -92,4 +92,4 @@ def delete_profile(profile, profiles):
         print("\nWe can't delete a profile that is not part of our database")
     else:
         profiles.pop(profile)
-        print("\nWe successfully delete the profile!\nThe profile no longer exists")
+        print("\nWe successfully deleted the profile!\nThe profile no longer exists")
