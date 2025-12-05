@@ -38,3 +38,15 @@ def view_profiles(profiles):
             print(f"\nAge: {profiles[profile]["age"]}")
             print(f"\nEmail: {profiles[profile]["email"]}")
             print("\n########################################")
+
+def check_profile(profile, profiles)
+    if profile not in profiles:
+        print("\nThe provided username is not part of our database")
+    else:
+        print("\n########################################")
+        print(f"\nProfile Information: {profile}")
+        print(f"\nName: {profiles[profile]["name"]}")
+        print(f"\nLast Name: {profiles[profile]["surname"]}")
+        print(f"\nAge: {profiles[profile]["age"]}")
+        print(f"\nEmail: {profiles[profile]["email"]}")
+        print("\n########################################")
