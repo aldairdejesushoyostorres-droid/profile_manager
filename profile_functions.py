@@ -50,3 +50,46 @@ def check_profile(profile, profiles):
         print(f"\nAge: {profiles[profile]["age"]}")
         print(f"\nEmail: {profiles[profile]["email"]}")
         print("\n########################################")
+
+def update_profile(profile, profiles):
+    if profile not in profiles:
+        print("\nWe can't update a non-existing profile")
+    else:
+        while True:
+            try:
+                print("\nWhat do you want to update?")
+                print("\n1) Your name")
+                print("\n2) Your last name")
+                print("\n3) Your age")
+                print("\n4) Your email")
+                choice = int(input("\nOption: "))
+                if choice not in {1,2,3,4}:
+                    print("\nYou have to select one of the possible options, try again")
+                else:
+                    break
+            except ValueError:
+                print("\nYou have to provide a valid numeric option, try again")
+        match choice:
+            case 1:
+                profiles[profile]["name"] = input("\nNew name: ")
+            case 2:
+                profiles[profile]["surname"] = input("\nNew last name: ")
+            case 3:
+                while True:
+                    try:
+                        profiles[profile]["age"] = int(input("\nNew age: "))
+                        if profiles[profile]["age"] < 0 or profiles[profile]["age"] > 100:
+                            print("\nYou have to provide a valid age, please.")
+                        else:
+                            break
+                    except ValueError:
+                        print("\nYou have to provide a valid numeric answer, try again!")
+            case 4:
+                profiles[profile]["email"] = input("\nNew email: ")
+
+def delete_profile(profile, profiles):
+    if profile not in profiles:
+        print("\nWe can't delete a profile that is not part of our database")
+    else:
+        profiles.pop(profile)
+        print("\nWe successfully delete the profile!\nThe profile no longer exists")
