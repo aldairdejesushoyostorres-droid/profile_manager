@@ -1,4 +1,40 @@
-# NEW ABSTRACTION FUNCTION
+import json # <--- NEW IMPORT
+
+# --- NEW FILE I/O FUNCTIONS ---
+
+def save_profiles(profiles):
+    """Saves the current profiles dictionary to a JSON file."""
+    try:
+        # The 'with open' context manager automatically closes the file
+        with open("profiles.json", "w") as f:
+            # json.dump serializes the Python dictionary to a JSON formatted file.
+            # indent=4 makes the file human-readable
+            json.dump(profiles, f, indent=4)
+        print("\nProfiles saved successfully.")
+    except Exception as e:
+        print(f"\nError saving profiles: {e}")
+
+def load_profiles():
+    """Loads profiles from a JSON file, or returns an empty dictionary if the file doesn't exist."""
+    try:
+        with open("profiles.json", "r") as f:
+            # json.load deserializes the JSON file content back into a Python dictionary.
+            profiles = json.load(f)
+            print("\nProfiles loaded successfully.")
+            return profiles
+    except FileNotFoundError:
+        # Expected on the very first run. Start with an empty collection.
+        return {}
+    except json.JSONDecodeError:
+        # Handles cases where the file exists but is corrupted/empty
+        print("\nError: The profiles file is corrupted. Starting with an empty database.")
+        return {}
+    except Exception as e:
+        print(f"\nError loading profiles: {e}. Starting with an empty database.")
+        return {}
+
+# --- END NEW FUNCTIONS ---
+
 def display_profile_details(username, profile_data):
     """Handles the formatted printing of a single user's profile data."""
     print("\n########################################")
@@ -8,6 +44,7 @@ def display_profile_details(username, profile_data):
     print(f"\nAge: {profile_data["age"]}")
     print(f"\nEmail: {profile_data["email"]}")
     print("\n########################################")
+
 
 def create_profile(profiles):
     name = input("\nIndicate your name: ")
@@ -41,16 +78,14 @@ def view_profiles(profiles):
     if len(profiles) == 0:
         print("\nWe can't see anything yet because there are no users")
     else:
-        # Calls the new abstraction function for each profile
         for username, profile_data in profiles.items(): 
             display_profile_details(username, profile_data)
 
 
-def check_profile(username, profiles): # Renamed 'profile' to 'username' for clarity
+def check_profile(username, profiles):
     if username not in profiles:
         print("\nThe provided username is not part of our database")
     else:
-        # Calls the new abstraction function for the found profile
         display_profile_details(username, profiles[username])
 
 
